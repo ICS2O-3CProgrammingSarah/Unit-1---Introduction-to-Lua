@@ -51,5 +51,8 @@ areaText.anchorY = 0
 areaText.x = 20
 areaText.y = display.contentHeight/2
 
--- ser the cokour of newText
+-- set the colour of newText
 areaText:setTextColor(1, 1, 1)
+
+-- display circle
+
