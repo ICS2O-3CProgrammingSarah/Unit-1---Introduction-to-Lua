@@ -27,5 +27,5 @@ local textObjectSignature
 -- display text on the screen at position x= 200 and y= 500
 -- a default font style and font size of 50
 
- textObject = display.newText ( By Sarah 20, 200, nil, 25
+ textObjectSign = display.newText ( "By Sarah!", 500, 600, nil, 50)
 
