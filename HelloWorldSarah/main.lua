@@ -26,3 +26,10 @@ local textObjectSignature
 -- sign the signature
 textObjectSignature = display.newText ("By Sarah", 800, 800, nil, 50)
 textObjectSignature:setTextColor(240/255, 255/255, 240/255)
+
+-- display text on the screen at position x= 200 and y= 500
+-- a default font style and font size of 50
+
+ textObjectSign = display.newText ( "By Sarah!", 500, 600, nil, 50)
+
+
