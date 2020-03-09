@@ -51,4 +51,7 @@ local function MoveGirl1(event)
 	-- add the scroll speed to x-value of the ship
 	girl1.x = girl1.x + scrollSpeed
 	-- change the transparency of the ship every time it moves so that it fades in 
-	girl1.alpha = girl1.alpha + 0000.1
+	girl1.alpha = girl1.alpha + 0.01
+end 
+-- MoveShip will be called over and over again
+Runtime:addEventListener("enterFrame", MoveShip)

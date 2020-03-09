@@ -37,6 +37,8 @@ local function Girl2Listener(touch)
 		if (alreadyTouchedGirl2 == false) then
 	    alreadyTouchedGirl2 = true
 
+    end 
+end
 
 
 
