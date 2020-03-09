@@ -1,6 +1,8 @@
 -----------------------------------------------------------------------------------------
---
--- main.lua
+-- Title: MovingImages
+-- Name: Your Name
+-- Course: ICS2O/3C
+-- This program displays 3 images that once it is touched, the image moves.
 --
 -----------------------------------------------------------------------------------------
 
@@ -56,7 +58,10 @@ end
 -- add the respective listeners to each object
 girl2:addEventListener("touch", Girl2Listener)
 
--- do planet thingy
+-- Function: planetListener
+-- Input: touch planetListener
+-- Output: none
+-- Description: when planet is touched, move it
 	local function planetListener(touch)
 
 	if (touch.phase == "began") then
@@ -89,28 +94,32 @@ local girl3Height = girl3.height
 girl3.x = 200
 girl3.y = 300
 
-<<<<<<< HEAD
-    end 
-end
-=======
--- do girl thingy
-  local function Girl3Listener(touch)
->>>>>>> 46e64457303331e2ffdc350a8de77393a099bdeb
+ 
+-- Function: girl3Listener
+-- Input: touch girl3
+-- Output: none
+-- Description: when planet is touched, move it
+	local function girl3Listener(touch)
 
-  if (touch.phase == "began") then
-     if (alreadyTouchedGirl3 == false) then
-        alreadyTouchedPlanet = true
-    end  
-end 
+	if (touch.phase == "began") then
+	   if (alreadyTouchedGirl3 == false) then
+	      alreadyTouchedPlanet = true
+	      alreadyTouchedGirl2 = true
+	  end
+   end 
    
 
-    if ( (touch.phase == "moved") and (alreadyTouchedPlanet == true) ) then
-      girl3.x = touch.x
-      girl3.y = touch.y
+   if ( (touch.phase == "moved") and (alreadyTouchedPlanet == true) ) then
+  	  girl3.x = touch.x
+  	  girl3.y = touch.y
   end 
 
    if (touch.phase == "ended") then
-     alreadyTouchedGirl3 = false
-     alreadyTouchedGirl3 = false
+   	 alreadyTouchedPlanet = false
+   	 alreadyTouchedGirl2 = false
+   	 alreadyTouchedGirl3 = false 
    end 
 end 
+
+-- add the respective listeners to each object
+girl3:addEventListener("touch", girl3Listener)
