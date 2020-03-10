@@ -40,18 +40,21 @@ end
 -- Moveship will be called over and over again
 Runtime:addEventListener("enterFrame", MoveShip)
 
--- set the intial x and y position of the girl
-girl1.x = 0
-girl1.y= display.contentHeight
 
 -- character image with width and height
-local girl1 = display.newImageRect("Images/girl1.png", 200, 200)
+local girl2 = display.newImageRect("Images/girl2.png", 200, 200)
 
-local function MoveGirl1(event)
+-- set the inital x and y position of the girl2 
+girl2.x = 0
+girl2.y = display.contentHeight/3
+
+-- set the inital x and y position of the girl2
+girl2.x = 900
+girl2.y = 500
+
+local function MoveShip(event)
 	-- add the scroll speed to x-value of the ship
-	girl1.x = girl1.x + scrollSpeed
-	-- change the transparency of the ship every time it moves so that it fades in 
-	girl1.alpha = girl1.alpha + 0.01
+	girl2.x = girl2.x + scrollSpeed
+	-- change the transparency of the ship every time it moves so that it fades out
+	girl2.alpha = girl2.alpha - 0.01
 end 
--- MoveShip will be called over and over again
-Runtime:addEventListener("enterFrame", MoveShip)
