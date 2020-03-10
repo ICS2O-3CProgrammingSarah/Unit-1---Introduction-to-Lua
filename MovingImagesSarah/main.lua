@@ -44,17 +44,24 @@ Runtime:addEventListener("enterFrame", MoveShip)
 -- character image with width and height
 local girl2 = display.newImageRect("Images/girl2.png", 200, 200)
 
--- set the inital x and y position of the girl2 
-girl2.x = 0
-girl2.y = display.contentHeight/3
+-- character image to be transparent
+girl2.alpha = 1
 
--- set the inital x and y position of the girl2
-girl2.x = 900
-girl2.y = 500
+-- set the inital x and  position of beetleship
+girl2.x = 1024
+girl2.y = display.contentHeight/1.5
+
+-- Function: MoveShip
+-- Input: this function accepts an event listener
+-- Output: none
+-- Description: This function adds the scroll speed to te x-value of the ship
 
 local function MoveShip(event)
 	-- add the scroll speed to x-value of the ship
-	girl2.x = girl2.x + scrollSpeed
+	girl2.x = girl2.x - scrollSpeed
 	-- change the transparency of the ship every time it moves so that it fades out
-	girl2.alpha = girl2.alpha - 0.01
+	girl2.alpha = girl2.alpha - 0.001
 end 
+
+-- Moveship will be called over and over again
+Runtime:addEventListener("enterFrame", MoveShip)
