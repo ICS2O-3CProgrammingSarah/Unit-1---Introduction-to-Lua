@@ -66,7 +66,6 @@ local function NumberFieldListener( event )
 			correctObject.isVisible = true
 			timer.performWithDelay(3000, HideCorrect)
    end end 
-
 end
 
 --------------------------------------------------------------------------------
@@ -88,3 +87,6 @@ numericField.inputType = "number"
 
 -- add the event listeer for numeric field
 numericField:addEventListener( "userInput", NumberFieldListener)
+
+-- call the function to ask the question
+AskQuestion()
