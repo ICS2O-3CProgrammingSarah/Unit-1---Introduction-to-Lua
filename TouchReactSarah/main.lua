@@ -30,6 +30,12 @@ textObject.y = display.contentHeight/3
 textObject:setTextColor (0, 0, 0)
 textObject.isVisible = false
 
+---------------------------------
+-- Add sound to the program
+-------------------------------
+local correctSound = audio.loadSound("Sounds/CorrectAnswerSoundEffect.mp3")
+local correctSoundChannel 
+
 -- Function: BlueButtonListener
 -- Input: touch listener
 -- Output: none
@@ -40,6 +46,7 @@ local function BlueButtonListener(touch)
 	 	blueButton.isVisible = false
 	 	redButton.isVisible = true
 	 	textObject.isVisible = true
+        correctSoundChannel = audio.play(correctSound)
     end
 
    if (touch.phase == "ended") then
@@ -66,4 +73,4 @@ end
 
 -- add the respecive listeners to each object
 blueButton:addEventListener("touch", BlueButtonListener)
-	 
+

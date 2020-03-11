@@ -56,7 +56,7 @@ girl2.y = display.contentHeight/1.5
 -- Output: none
 -- Description: This function adds the scroll speed to te x-value of the ship
 
-local function MoveShip(event)
+local function MoveGirl(event)
 	-- add the scroll speed to x-value of the ship
 	girl2.x = girl2.x - scrollSpeed
 	-- change the transparency of the ship every time it moves so that it fades out
@@ -64,4 +64,4 @@ local function MoveShip(event)
 end 
 
 -- Moveship will be called over and over again
-Runtime:addEventListener("enterFrame", MoveShip)
+Runtime:addEventListener("enterFrame", MoveGirl)
