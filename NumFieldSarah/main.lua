@@ -14,7 +14,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- set the backgroud color
-display.setDefault("background", 255/255, 239/255, 213/255)
+display.setDefault("background", 0/255, 191/255, 255/255)
 
 --------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -39,7 +39,7 @@ local function AskQuestion()
 	randomNumber1 = math.random(0, 10)
 	randomNumber2 = math.random(0, 10)
 
-	corectAnswer = randomNumber1 + randomNumber2
+	correctAnswer = randomNumber1 + randomNumber2
 
 	-- create question in text object
 	questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
@@ -74,26 +74,43 @@ end
 --------------------------------------------------------------------------------
 
 -- display a question and sets the color
-questionObject = display.newText( "", display.contentWidth/2, display.contentHeight/2.7, nil, 50 )
+questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2.5, nil, 50 )
 questionObject:setTextColor(155/255, 42/255, 198/255)
 
 -- create the correct text object and make it invisible
 correctObject = display.newText( "Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50 )
-correctObject:setTextColor(242/255, 124/255, 124/255)
-correctObject.isVisible = false
+correctObject:setTextColor(25/255, 51/255, 0/255)
+correctObject.isVisible = true
 
----
+
 -- create the correct text object and make it invisible
-incorrectObject = display.newText( "Incorrect!", display.contentWidth/2.5, display.contentHeight*1/3, nil, 50 )
-incorrectObject:setTextColor(242/255, 124/255, 124/255)
-incorrectObject.isVisible = false
+incorrectObject = display.newText( "Incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 50 )
+incorrectObject:setTextColor(25/255, 51/255, 0/255)
+incorrectObject.isVisible = true
 
 -- Create numeric field
 numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80 )
 numericField.inputType = "number"
 
--- add the event listeer for numeric field
-numericField:addEventListener( "userInput", NumberFieldListener)
+-- add the event listener for numeric field
+numericField:addEventListener( "userInput", NumericFieldListener)
 
 -- call the function to ask the question
 AskQuestion()
+
+-- display the amount of points as a text object
+pointsText = display.newText("Points = " .. points, display.contentWidth/3, display.contentHeight/3, nil, 50)
+
+if (userAnswer == correctAnswer) then
+	-- give a point if the user gets the correct answer
+	points = points + 1
+
+	-- update in display object
+	pointsText.text = "Points = " .. points
+end 
+
+-------------------------------------------------------------------
+--LOCAL VARIABLE
+--------------------------------------------------------------------
+
+
