@@ -3,65 +3,35 @@
 -- main.lua
 --
 -----------------------------------------------------------------------------------------
-
--- Your code here
+--Title: WhackAMole
+-- Name: Sarah
+-- Course: ICS2O/3C
+-- This program makes an object appear on the screen for an amount of time and then disappears
+--if the user clicks on the object, his or her score increases by 1.
 
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- load physics
-local physics = require("physics")
+-- create the background
+local bkg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
 
--- start physics
-physics.start()
+  --set the colour of the background
+ display.setDefault("background", 255/255, 228/255, 225/255)
 
-----------------------------------------------------------
---Object
---------------------------------------------------------------
---Ground 
-local ground = display.newImage("Images/ground.png", 511, 750)
- -- change the width to be the same as the screen
-  ground.width = display.contentWidth
+  -- setting position
+  bkg.anchorX = 0
+  bkg.anchorY = 0
+  bkg.x = 0
+  bkg.y = 0
 
-  -- add to physics
-  physics.addBody(ground, "static", {friction= 0.7, bounce=0.4})
+-- Creating image
+local pony = display.newImage( "Images/pony.png", 0, 0 )
+  -- set the position
+  pony.x = display.contentCenterX
+  pony.y = display.contentCenterY
 
--- display the bean image
-local beam = display.newImage("Images/beam.png")
+  --scale the pony
+  pony:scale( 0.3, 0.3 )
 
--- set the x and y position
- beam.x = display.contentCenterX/5
- beam.y = display.contentCenterY*1.65
-
-  -------------------
- --code
-
- -- rotate the beam -60 degrees so its on an angle
- beam:rotate(45)
-
- -- send it to the back layer
- beam:toBack()
-
- -- add to physics
- physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
-
--- create bkg
-local bkg = display.newImage("Images/bkg.png", 0, 0)
-  -- set the x and y pos
-  bkg.x = display.contentCenterX
-  bkg.y = display.contentCenterY
-
-  -- send to the back
-  bkg:toBack()
-  ------------------------------------------------
-  --FUNCITION
-  -----------------------------------------------------
- -- create the first ball
-
-local function firstBall()
-  -- create first ball
-  local ball1 = display.newImage("Images/super_ball.png", 0, 0)
-
- -- add to physics
- physics.addBody(ball1, {density=1.0, friction= 0.5, bounce=0.3, radius=25})
-end
+  -- set the pony to be invisible
+  pony.isVisible = false 
