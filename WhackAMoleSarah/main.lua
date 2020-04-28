@@ -25,29 +25,75 @@ local bkg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
   bkg.y = 0
 
 -- Creating image
-local pony = display.newImage( "Images/pony.png", 0, 0 )
+local mole = display.newImage( "Images/pony.png", 0, 0 )
   -- set the position
-  pony.x = display.contentCenterX
-  pony.y = display.contentCenterY
+  mole.x = display.contentCenterX
+  mole.y = display.contentCenterY
 
   --scale the pony
-  pony:scale( 0.3, 0.3 )
+  mole:scale( 0.3, 0.3 )
 
   -- set the pony to be invisible
-  pony.isVisible = false 
+  mole.isVisible = false 
   --store the pointds
   local score = 0
   local scoreText
+
 -------------------------------------------------------FUNCTIONS-------------------------------------------------------------------
--- This function makes the pony appear in a random (x,y) position on the screen
+-- This function makes the mole appear in a random (x,y) position on the screen
 -- Before calling  HideFunction
 function PopUp
-   
- --Choose a random position on the screen between 0 and the size of the screen
+  --Choose a random position on the screen between 0 and the size of the screen
+ mole.x = math.random( 0, display.contentWidth )
+ mole.y = math.random( 0, display.contentHeight )
 
+ -- Make the mole visible
+ mole.isVisible = true 
  
-
- -- Make the pony visible
- pony.isVisible = true 
-
  -- call the hide function after 5000
+ timer.performWithDelay( 5000, mole)
+end 
+
+-- This function calls the PopUp function after 3 seconds
+function PopUpDelay( )
+  timer.performWithDelay( 3000, PopUp )
+end 
+
+--This function makes the mole invisble and then calls the PopUpDelay function function_name( ... )
+function Hide( )
+  
+  -- Change Visbillity
+  mole.isVisble = false
+
+  --Call the function PopUpDelay function
+  PopUp()
+end 
+
+-- This function starts the game
+function GameStarts( )
+  PopUpDelay()
+end 
+
+--This function incerements the score only if the mole is click. It then displays the
+-- new score.
+function Whacked( event )
+  --If touch phase just started
+  if (event.phase == "began") then
+    --Increases point by 1
+    points = points + 1
+    --Display the score
+    timer.performWithDelay(2000, HidePoints)
+  end
+
+end 
+----------------------------Event Listeners --------------------------------------
+-- I add the event listener to the moles so that if the mole is touched, the Whacked function function_name( ... )
+-- is called
+mole:addEventListener( "touch", Whacked)
+
+----------------------------Start the game------------------------------------------
+GameStarts()
+
+
+
+  
