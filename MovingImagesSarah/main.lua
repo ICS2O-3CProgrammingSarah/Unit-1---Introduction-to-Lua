@@ -7,6 +7,9 @@
 --fades out and grows in size
 -----------------------------------------------------------------------------------------
 
+---------------------------------
+-- Add sound to the program
+------------------------------
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
@@ -26,6 +29,9 @@ beetleship.alpha = 0
 beetleship.x = 0
 beetleship.y = display.contentHeight/3
 
+local bkgMusic = audio.loadStream( "Sound/bkgMusic.mp3" )
+audio.play(bkgMusic, {loops = -1})
+
 -- Function: MoveShip
 -- Input: this function accepts an event listener
 -- Output: none
@@ -36,6 +42,7 @@ local function MoveShip(event)
 	-- change the transparency of the ship every time it moves so that it fades out
 	beetleship.alpha = beetleship.alpha + 0.01
 end 
+
 
 -- Moveship will be called over and over again
 Runtime:addEventListener("enterFrame", MoveShip)
@@ -61,7 +68,10 @@ local function MoveGirl(event)
 	girl2.x = girl2.x - scrollSpeed
 	-- change the transparency of the ship every time it moves so that it fades out
 	girl2.alpha = girl2.alpha - 0.001
-end 
+end
+-----------------------------------------------------
+--BACKGROUND MUSIC
+
 
 -- Moveship will be called over and over again
 Runtime:addEventListener("enterFrame", MoveGirl)
