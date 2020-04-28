@@ -51,6 +51,9 @@ local bkg = display.newImage("Images/bkg.png", 0, 0)
   bkg.x = display.contentCenterX
   bkg.y = display.contentCenterY
 
+ bkg.width =  display.contentWidth
+ bkg.height =  display.contentHeight
+  
   -- send to the back
   bkg:toBack()
   ------------------------------------------------
@@ -60,8 +63,26 @@ local bkg = display.newImage("Images/bkg.png", 0, 0)
 
 local function firstBall()
   -- create first ball
-  local ball1 = display.newImage("Images/super_ball.png", 0, 0)
+  local ball1 = display.newImage("Physics/super_ball.png", 0, 0)
 
  -- add to physics
  physics.addBody(ball1, {density=1.0, friction= 0.5, bounce=0.3, radius=25})
 end
+
+---------------------------------------------------------------------------------------------------------
+
+local function secondBall()
+  --create the second ball
+ local secondBall = display.newImage("Physics/super_ball.png", 0, 0)
+
+ --add to physics
+ physics.addBody(secondBall, {density=3.0, friction=0.7, radius=12.5})
+  --scale ball1 to be half its original size.
+ ball2:scale(0.5, 0.5)
+end 
+--------------------------------------------------------------------------------
+--TIME DELAYS - call each function after given millisecond
+--------------------------------------------------------------------------------
+timer.performWithDelay( 0, firstBall)
+timer.performWithDelay( 500, secondBall)
+

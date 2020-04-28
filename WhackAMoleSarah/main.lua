@@ -35,3 +35,19 @@ local pony = display.newImage( "Images/pony.png", 0, 0 )
 
   -- set the pony to be invisible
   pony.isVisible = false 
+  --store the pointds
+  local score = 0
+  local scoreText
+-------------------------------------------------------FUNCTIONS-------------------------------------------------------------------
+-- This function makes the pony appear in a random (x,y) position on the screen
+-- Before calling  HideFunction
+function PopUp
+   
+ --Choose a random position on the screen between 0 and the size of the screen
+
+ 
+
+ -- Make the pony visible
+ pony.isVisible = true 
+
+ -- call the hide function after 5000
