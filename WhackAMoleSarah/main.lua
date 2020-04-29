@@ -25,7 +25,7 @@ local bkg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
   bkg.y = 0
 
 -- Creating image
-local mole = display.newImage( "Images/pony.png", 0, 0 )
+local mole = display.newImage( "Images/mole.png", 0, 0 )
   -- set the position
   mole.x = display.contentCenterX
   mole.y = display.contentCenterY
@@ -42,16 +42,16 @@ local mole = display.newImage( "Images/pony.png", 0, 0 )
 -------------------------------------------------------FUNCTIONS-------------------------------------------------------------------
 -- This function makes the mole appear in a random (x,y) position on the screen
 -- Before calling  HideFunction
-function PopUp
+function PopUp()
   --Choose a random position on the screen between 0 and the size of the screen
- mole.x = math.random( 0, display.contentWidth )
- mole.y = math.random( 0, display.contentHeight )
+  mole.x = math.random( 0, display.contentWidth )
+  mole.y = math.random( 0, display.contentHeight )
 
- -- Make the mole visible
- mole.isVisible = true 
+  -- Make the mole visible
+  mole.isVisible = true 
  
- -- call the hide function after 5000
- timer.performWithDelay( 5000, mole)
+  -- call the hide function after 5000
+  timer.performWithDelay( 5000, mole)
 end 
 
 -- This function calls the PopUp function after 3 seconds
@@ -80,12 +80,17 @@ function Whacked( event )
   --If touch phase just started
   if (event.phase == "began") then
     --Increases point by 1
-    points = points + 1
-    --Display the score
+    score = score + 1
+    --Display the score text
+    scoreText = "score = " .. score
+    -- add timer
     timer.performWithDelay(2000, HidePoints)
   end
 
 end 
+--display the amount of points as a text object
+scoreText = display.newText("score = " .. score, 150, 33, nil, 50)
+
 ----------------------------Event Listeners --------------------------------------
 -- I add the event listener to the moles so that if the mole is touched, the Whacked function function_name( ... )
 -- is called

@@ -34,7 +34,8 @@ local beam = display.newImage("Images/beam.png")
  beam.y = display.contentCenterY*1.65
 
   -------------------
- --code
+ beam.x = display.contentWidth/2
+ beam.y = display.contentHeight/10
 
  -- rotate the beam -60 degrees so its on an angle
  beam:rotate(45)
@@ -63,10 +64,14 @@ local bkg = display.newImage("Images/bkg.png", 0, 0)
 
 local function firstBall()
   -- create first ball
-  local ball1 = display.newImage("Physics/super_ball.png", 0, 0)
+  local firtBall = display.newImage("Physics/super_ball.png", 0, 0)
+    
+    firstBall.width = 250
+    firstBall.height = 100
+    -- add to physics
+   
+  physics.addBody(ball1, {density=1.0, friction= 0.5, bounce=0.3, radius=25})
 
- -- add to physics
- physics.addBody(ball1, {density=1.0, friction= 0.5, bounce=0.3, radius=25})
 end
 
 ---------------------------------------------------------------------------------------------------------
