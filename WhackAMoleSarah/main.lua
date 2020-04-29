@@ -12,29 +12,25 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- create the background
-local bkg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
+ -- add background music
+ local ponyMusic = audio.loadStream("Sound/ponyMusic.mp3.mp3")
+ audio.play(ponyMusic, {loop = -1})
+ 
 
-  --set the colour of the background
- display.setDefault("background", 255/255, 228/255, 225/255)
-
-  -- setting position
-  bkg.anchorX = 0
-  bkg.anchorY = 0
-  bkg.x = 0
-  bkg.y = 0
+ --set the colour of the background
+ display.setDefault("background", 127/255, 255/255, 212/255)
 
 -- Creating image
-local mole = display.newImage( "Images/mole.png", 0, 0 )
+local pony = display.newImage( "Images/pony.png", 0, 0 )
   -- set the position
-  mole.x = display.contentCenterX
-  mole.y = display.contentCenterY
+  pony.x = display.contentCenterX
+  pony.y = display.contentCenterY
 
   --scale the pony
-  mole:scale( 0.3, 0.3 )
+  pony:scale( 0.3, 0.3 )
 
   -- set the pony to be invisible
-  mole.isVisible = false 
+  pony.isVisible = false 
   --store the pointds
   local score = 0
   local scoreText
@@ -44,14 +40,14 @@ local mole = display.newImage( "Images/mole.png", 0, 0 )
 -- Before calling  HideFunction
 function PopUp()
   --Choose a random position on the screen between 0 and the size of the screen
-  mole.x = math.random( 0, display.contentWidth )
-  mole.y = math.random( 0, display.contentHeight )
+  pony.x = math.random( 0, display.contentWidth )
+  pony.y = math.random( 0, display.contentHeight )
 
   -- Make the mole visible
-  mole.isVisible = true 
+  pony.isVisible = true 
  
   -- call the hide function after 5000
-  timer.performWithDelay( 5000, mole)
+  timer.performWithDelay( 900, Hide)
 end 
 
 -- This function calls the PopUp function after 3 seconds
@@ -63,7 +59,7 @@ end
 function Hide( )
   
   -- Change Visbillity
-  mole.isVisble = false
+  pony.isVisble = false
 
   --Call the function PopUpDelay function
   PopUp()
@@ -74,6 +70,13 @@ function GameStarts( )
   PopUpDelay()
 end 
 
+--------------------------------------------------
+--ADD SOUND
+---------------------------------------------------
+
+local whackSound = audio.loadStream("Sound/whack.mp3")
+local whackSoundChannel
+
 --This function incerements the score only if the mole is click. It then displays the
 -- new score.
 function Whacked( event )
@@ -82,19 +85,25 @@ function Whacked( event )
     --Increases point by 1
     score = score + 1
     --Display the score text
-    scoreText = "score = " .. score
-    -- add timer
-    timer.performWithDelay(2000, HidePoints)
+    scoreText.text = "score = " .. score
+    whackSoundChannel = audio.play( whackSound )
+
   end
 
 end 
+
+---------------------------------OBJECT CREATION--------------------------------
+---
+------------------------------------------------------------------------------
 --display the amount of points as a text object
-scoreText = display.newText("score = " .. score, 150, 33, nil, 50)
+scoreText = display.newText("Score = " .. score, 150, 33, nil, 50)
+scoreText:setTextColor(91/255, 91/255, 91/255)
+scoreText.isVisible = true
 
 ----------------------------Event Listeners --------------------------------------
 -- I add the event listener to the moles so that if the mole is touched, the Whacked function function_name( ... )
 -- is called
-mole:addEventListener( "touch", Whacked)
+pony:addEventListener( "touch", Whacked)
 
 ----------------------------Start the game------------------------------------------
 GameStarts()

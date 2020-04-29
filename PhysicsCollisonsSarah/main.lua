@@ -64,7 +64,7 @@ local bkg = display.newImage("Images/bkg.png", 0, 0)
 
 local function firstBall()
   -- create first ball
-  local firtBall = display.newImage("Physics/super_ball.png", 0, 0)
+  local firtBall = display.newImage("Images/super_ball.png", 0, 0)
     
     firstBall.width = 250
     firstBall.height = 100
@@ -78,7 +78,7 @@ end
 
 local function secondBall()
   --create the second ball
- local secondBall = display.newImage("Physics/super_ball.png", 0, 0)
+ local secondBall = display.newImage("Images/super_ball.png", 0, 0)
 
  --add to physics
  physics.addBody(secondBall, {density=3.0, friction=0.7, radius=12.5})
