@@ -9,6 +9,10 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
+--add background sound
+local ball = audio.loadStream( "Sounds/ball.mp3.mp3")
+audio.play(ball, {loops = -1})
+
 -- load physics
 local physics = require("physics")
 
@@ -27,15 +31,18 @@ local ground = display.newImage("Images/ground.png", 511, 750)
   physics.addBody(ground, "static", {friction= 0.7, bounce=0.4})
 
 -- display the bean image
-local beam = display.newImage("Images/beam.png")
+local beam = display.newImage("Images/beam.png", 0, 0)
 
 -- set the x and y position
  beam.x = display.contentCenterX/5
  beam.y = display.contentCenterY*1.65
 
-  -------------------
- beam.x = display.contentWidth/2
- beam.y = display.contentHeight/10
+  --change the width to be half of the iPad screen
+ beam.width = display.contentWidth/2
+ beam.height = display.contentHeight/10
+
+ --
+ beam.height = display.contentHeight*.10
 
  -- rotate the beam -60 degrees so its on an angle
  beam:rotate(45)
@@ -45,6 +52,29 @@ local beam = display.newImage("Images/beam.png")
 
  -- add to physics
  physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
+
+-- display the bean image
+local secondBeam = display.newImage("Images/beam.png", 0, 0)
+
+-- set the x and y position
+ secondBeam.x = 921.6
+ secondBeam.y = display.contentCenterY*1.65
+
+  --change the width to be half of the iPad screen
+ secondBeam.width = display.contentWidth/2
+ secondBeam.height = display.contentHeight/10
+
+ --
+ secondBeam.height = display.contentHeight*.10
+
+ -- rotate the beam -60 degrees so its on an angle
+ secondBeam:rotate(-45)
+
+ -- send it to the back layer 
+ secondBeam:toBack()
+
+ -- add to physics
+ physics.addBody(secondBeam, "static", {friction=0.5, bounce=0.3})
 
 -- create bkg
 local bkg = display.newImage("Images/bkg.png", 0, 0)
@@ -64,12 +94,9 @@ local bkg = display.newImage("Images/bkg.png", 0, 0)
 
 local function firstBall()
   -- create first ball
-  local firtBall = display.newImage("Images/super_ball.png", 0, 0)
-    
-    firstBall.width = 250
-    firstBall.height = 100
-    -- add to physics
-   
+  local ball1 = display.newImage("Images/super_ball.png", 0, 0)
+  
+  --add to physics
   physics.addBody(ball1, {density=1.0, friction= 0.5, bounce=0.3, radius=25})
 
 end
@@ -78,16 +105,32 @@ end
 
 local function secondBall()
   --create the second ball
- local secondBall = display.newImage("Images/super_ball.png", 0, 0)
+ local ball2 = display.newImage("Images/super_ball.png", 0, 0)
 
  --add to physics
- physics.addBody(secondBall, {density=3.0, friction=0.7, radius=12.5})
+ physics.addBody(ball2, {density=3.0, friction=0.7, radius=12.5})
+  
   --scale ball1 to be half its original size.
- ball2:scale(0.5, 0.5)
-end 
+ ball2:scale(0.5, 0.5) 
+end
+
+local function thirdBall()
+  -- create first ball
+  local ball3 = display.newImage("Images/super_ball.png", 0, 0)
+  
+  --change its location
+  ball3.x = 900
+  ball3.y = 350
+
+  --add to physics
+  physics.addBody(ball3, {density=1.0, friction= 0.5, bounce=0.3, radius=35})
+
+end
+
 --------------------------------------------------------------------------------
 --TIME DELAYS - call each function after given millisecond
 --------------------------------------------------------------------------------
 timer.performWithDelay( 0, firstBall)
 timer.performWithDelay( 500, secondBall)
+timer.performWithDelay( 500, thirdBall)
 
